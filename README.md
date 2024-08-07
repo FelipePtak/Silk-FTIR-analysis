@@ -46,4 +46,4 @@ The steps are:
 doi: https://doi.org/10.1038/s41467-022-35505-w
 2. https://peakutils.readthedocs.io/en/latest/
 3. https://github.com/anastasia-ragulskaya/FTIR_code
-4. A. Sadata and I. J. Joye, "Peak Fitting Applied to Fourier Transform Infrared and Raman Spectroscopic Analysis of Proteins". Appl. Sci. 10(7), 5918 (2020)
+4. A. Sadata and I. J. Joye, "Peak Fitting Applied to Fourier Transform Infrared and Raman Spectroscopic Analysis of Proteins". Appl. Sci. 10(7), 5918 (2020) doi: https://doi.org/10.3390/app10175918
