@@ -38,7 +38,7 @@ The steps are:
 5. Fit the data to a Gaussian function:
     1. Peaks to be used on the "Amide I Vibrational band assignment.txt" file
         1. The peaks are also used as free parameters for optimization, respecting the range of \pm 2 1/cm stated in Reference 1.
-    2. An alternative is to fit the data with a Voigt function (on development...). [4]
+    2. An alternative is to fit the data with a Voigt function (in development...). [4]
 6. Calculate the area of each peak to discriminate between the types of secondary structure present in the sample.
 
 # References
