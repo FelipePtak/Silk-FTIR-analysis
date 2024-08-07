@@ -1,0 +1,15 @@
+| Wavenumber (1/cm) | Assignment             |
+| ----------------------------------- |
+| 1609 | Intermolecular B-Sheet       |
+| 1621 | Intermolecular B-Sheet       |
+| 1631 | Intermolecular B-Sheet       |
+| 1650 | A-Helix/Random Coil          |
+| 1673 | B-Turn                       |
+| 1695 | Antiparallel Amyloid B-Sheet |
+| 1703 | Antiparallel Amyloid B-Sheet |
+|  ---------------------------------- |
+
+These values are taken form the 2022 Nature Communication paper by Dror Eliaz et al.
+See the Methods (Analysis of IR spectra) section for more detailed information.
+"Micro and nano-scale compartments guide the structural transition of silk protein monomers into silk fibers"
+https://doi.org/10.1038/s41467-022-35505-w
