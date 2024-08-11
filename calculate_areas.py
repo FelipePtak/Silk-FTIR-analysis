@@ -39,6 +39,6 @@ def area_percentage(struc_area, total_area):
 def percentage_print():
     percentages = {'beta-Turns' : area_percentage(turn_area, total_area),\
                'alpha-Helices/Random coils' : area_percentage(helix_area, total_area),\
-                   'beta-Sheet' : area_percentage(sheet_area, total_area}
+                   'beta-Sheet' : area_percentage(sheet_area, total_area)}
     for (struc, val) in percentages.items():
         print(f'{struc} area: {val:.2f}%')               
