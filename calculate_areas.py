@@ -1,3 +1,5 @@
+import numpy as np
+
 def gaussian_area(amp, wid):
     """
     A simple calculation of the area of a gaussian function
@@ -36,9 +38,11 @@ def area_percentage(struc_area, total_area):
     percent = (struc_area / total_area) * 100
     return percent
 
-def percentage_print():
-    percentages = {'beta-Turns' : area_percentage(turn_area, total_area),\
-               'alpha-Helices/Random coils' : area_percentage(helix_area, total_area),\
-                   'beta-Sheet' : area_percentage(sheet_area, total_area}
+def percentage_print(total_area, *structures_areas):
+    percentages = {}
+    struc_names = ['alhpa-helix', 'beta-sheet', 'beta-turn']
+    for (name, area) in zip(struc_names, structures_areas):
+        percentages[name] = area_percentage(area, total_area)
     for (struc, val) in percentages.items():
-        print(f'{struc} area: {val:.2f}%')               
+        print(f'{struc} area: {val:.2f}%')
+    return percentages
