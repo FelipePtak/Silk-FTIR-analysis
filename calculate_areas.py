@@ -40,7 +40,7 @@ def area_percentage(struc_area, total_area):
 
 def percentage_print(total_area, *structures_areas):
     percentages = {}
-    struc_names = ['alhpa-helix', 'beta-sheet', 'beta-turn']
+    struc_names = ['alpha-helix', 'beta-sheet', 'beta-turn']
     for (name, area) in zip(struc_names, structures_areas):
         percentages[name] = area_percentage(area, total_area)
     for (struc, val) in percentages.items():
