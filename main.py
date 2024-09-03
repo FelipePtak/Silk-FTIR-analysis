@@ -1,19 +1,19 @@
-import os
-import numpy as np
-import matplotlib.pyplot as plt
-from config import *
+from module_imports import os, np, plt
+from config import peaks, amide_initial_band, amide_final_band,\
+titleFonts, axisFonts, amide_limits, peak_colors, peak_labels
 from load_data import *
 from plots import *
 from normalize_data import *
 from amide import *
 from smooth import *
 from baseline_subtraction import *
-from Fitting_functions import *
+from fitting_functions import *
 from scipy.optimize import curve_fit
 from first_guess import *
 from bounds_constructor import *
 from calculate_areas import *
 from save_parameters import *
+from save_plots import *
 
 plt.style.use('seaborn-v0_8')
 
@@ -24,7 +24,6 @@ def main():
     print("\n\n")
     files_list = list(file_path)
 
-    peaks = [1609, 1621, 1631, 1650, 1673, 1695, 1703]
     assignments = [r'Intermolecular B-Sheet', r'Intermolecular B-Sheet', \
     r'Intermolecular B-Sheet', r'A-Helix/Random Coils', 'B-Truns', \
     r'Antiparallel amyloid B-Sheet', r'Antiparallel amyloid B-Sheet']
@@ -42,19 +41,23 @@ def main():
         fullspectrum.head()
 
         normalized_data = normalize_data(fullspectrum)
-        plot_fulldata(normalized_data.wavenumber, normalized_data.normalized)
+        full_data_plot = plot_fulldata(normalized_data.wavenumber, normalized_data.normalized)
+        save_fullspectrum_plot(full_data_plot, file)
 
         amide_data = amide_band_data(normalized_data)
         print(f"Amide I data of {os.path.basename(file)}: \n")
         amide_data.head()
-        plot_amide(amide_data.wavenumber, amide_data.normalized)
+        amide_plot = plot_amide(amide_data.wavenumber, amide_data.normalized)
+        save_amide_plot(amide_plot, file)
 
         smoothed_data = smoothFilter(amide_data)
-        plot_filter(amide_data, smoothed_data)
+        smoothed_data_plot = plot_filter(amide_data, smoothed_data)
+        save_savgol_plot(smoothed_data_plot, file)
 
         amide_baseline_sub = baselineSubtract(amide_data)
         corrected_data = baselineSubtract(smoothed_data)
-        plot_filter(amide_baseline_sub, corrected_data)
+        corrected_data_plot = plot_filter(amide_baseline_sub, corrected_data)
+        save_baseline_plot(corrected_data_plot, file)
 
         print(f"Calculating initial guess for {os.path.basename(file)} data fit...\n")
         initial_amplitudes = amplitudes_initial_guess(corrected_data, *peaks)
@@ -88,6 +91,7 @@ def main():
         yfit, separate_peaks = seven_gaussian(xfit, *popt)
         xdata = corrected_data.wavenumber
         ydata = corrected_data.normalized
+        fit_plot = plt.figure()
         plt.plot(xdata, ydata, 'ko', label='Data')
         plt.plot(xfit, yfit, 'r-', label='Fit')
         plt.title('Amide I region', **titleFonts)
@@ -96,7 +100,9 @@ def main():
         plt.xlim(amide_limits)
         plt.legend()
         plt.show()
+        save_data_fit_plot(fit_plot, file)
 
+        assignments_plot = plt.figure()
         plt.plot(xdata, ydata, 'ko', label='Data')
         plt.plot(xfit, yfit, 'r-', label='Fit')
 
@@ -110,6 +116,7 @@ def main():
         plt.xlim(amide_limits)
         plt.legend()
         plt.show()
+        save_assignments_plot(assignments_plot, file)
 
     # Calculating areas
     for (file, popt) in fit_dict.items():
