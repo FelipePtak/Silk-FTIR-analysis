@@ -1,4 +1,5 @@
-from config import *
+from module_imports import pd
+from config import amide_initial_band, amide_final_band
 
 """This function simply takes the full spectrum data
 and assign the amide band (at principle 1580-1725 1/cm)
